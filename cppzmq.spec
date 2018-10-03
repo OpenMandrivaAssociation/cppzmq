@@ -6,8 +6,8 @@
 
 Name:		cppzmq
 Summary:	C++ binding for 0MQ
-Version:	4.2.1
-Release:	%mkrel 5
+Version:	4.3.0
+Release:	1
 License:	MIT
 Group:		Development/Other
 Url:		https://github.com/zeromq/cppzmq
