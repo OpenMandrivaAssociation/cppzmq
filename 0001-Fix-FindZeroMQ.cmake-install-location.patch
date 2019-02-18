@@ -1,0 +1,25 @@
+From 93aa0069a88b410e0ed95ffbeeaae94dfc8ce4ed Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jani=20V=C3=A4limaa?= <wally@mageia.org>
+Date: Thu, 17 Jan 2019 18:05:55 +0200
+Subject: [PATCH] Fix FindZeroMQ.cmake install location
+
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 23a3d24..3fb2ed9 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -82,7 +82,7 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+               ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+               DESTINATION ${CPPZMQ_CMAKECONFIG_INSTALL_DIR})
+ install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/libzmq-pkg-config/FindZeroMQ.cmake
+-              DESTINATION ${CPPZMQ_CMAKECONFIG_INSTALL_DIR}/libzmq-pkg-config)
++              DESTINATION ${CPPZMQ_CMAKECONFIG_INSTALL_DIR})
+ 
+ option(CPPZMQ_BUILD_TESTS "Whether or not to build the tests" ON)
+ 
+-- 
+2.20.1
+
