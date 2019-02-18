@@ -33,7 +33,7 @@ Conflicts:	%{_lib}zeromq-devel < 4.2.2
 C++ binding development headers for 0MQ.
 
 %prep
-%autosetup -S git_am
+%autosetup -p1
 
 %build
 %cmake \
@@ -48,5 +48,4 @@ C++ binding development headers for 0MQ.
 %license LICENSE
 %{_includedir}/zmq*.hpp
 %dir %{_datadir}/cmake/cppzmq/
-%{_datadir}/cmake/cppzmq/cppzmqConfig.cmake
-%{_datadir}/cmake/cppzmq/cppzmqConfigVersion.cmake
+%{_datadir}/cmake/cppzmq/*.cmake
