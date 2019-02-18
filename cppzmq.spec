@@ -12,7 +12,9 @@ License:	MIT
 Group:		Development/Other
 Url:		https://github.com/zeromq/cppzmq
 Source0:	https://github.com/zeromq/cppzmq/archive/v%{version}/%{name}-%{version}.tar.gz
-#Patch0:		0001-Fix-cppzmqConfig.cmake-to-skip-static-lib-check.patch
+Patch0:		0001-Skip-zeromq-static-targets.patch
+Patch1:		0001-Drop-static-targets-from-FindZeroMQ.cmake.patch
+Patch2:		0001-Fix-FindZeroMQ.cmake-install-location.patch
 BuildRequires:	cmake
 BuildRequires:	git-core
 BuildRequires:	pkgconfig(libzmq)
@@ -31,19 +33,19 @@ Conflicts:	%{_lib}zeromq-devel < 4.2.2
 C++ binding development headers for 0MQ.
 
 %prep
-%autosetup -S git_am
+%autosetup -p1
 
 %build
-%cmake
+%cmake \
+	-DCPPZMQ_BUILD_TESTS:BOOL=OFF
 %make_build
 
 %install
 %make_install -C build
 
 %files -n %{devname}
-%doc README
+#doc README
 %license LICENSE
 %{_includedir}/zmq*.hpp
 %dir %{_datadir}/cmake/cppzmq/
-%{_datadir}/cmake/cppzmq/cppzmqConfig.cmake
-%{_datadir}/cmake/cppzmq/cppzmqConfigVersion.cmake
+%{_datadir}/cmake/cppzmq/*.cmake

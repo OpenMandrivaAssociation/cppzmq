@@ -1,0 +1,36 @@
+From 282040c2e15e044bea297408662aa573bdf14d19 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jani=20V=C3=A4limaa?= <wally@mageia.org>
+Date: Thu, 17 Jan 2019 17:49:45 +0200
+Subject: [PATCH] Drop static targets from FindZeroMQ.cmake
+
+---
+ libzmq-pkg-config/FindZeroMQ.cmake | 8 +-------
+ 1 file changed, 1 insertion(+), 7 deletions(-)
+
+diff --git a/libzmq-pkg-config/FindZeroMQ.cmake b/libzmq-pkg-config/FindZeroMQ.cmake
+index 89d8236..02b3220 100644
+--- a/libzmq-pkg-config/FindZeroMQ.cmake
++++ b/libzmq-pkg-config/FindZeroMQ.cmake
+@@ -5,10 +5,8 @@ pkg_check_modules(PC_LIBZMQ QUIET libzmq)
+ set(ZeroMQ_VERSION ${PC_LIBZMQ_VERSION})
+ find_library(ZeroMQ_LIBRARY NAMES libzmq.so libzmq.dylib libzmq.dll
+              PATHS ${PC_LIBZMQ_LIBDIR} ${PC_LIBZMQ_LIBRARY_DIRS})
+-find_library(ZeroMQ_STATIC_LIBRARY NAMES libzmq-static.a libzmq.a libzmq.dll.a
+-             PATHS ${PC_LIBZMQ_LIBDIR} ${PC_LIBZMQ_LIBRARY_DIRS})
+ 
+-if(ZeroMQ_LIBRARY AND ZeroMQ_STATIC_LIBRARY)
++if(ZeroMQ_LIBRARY)
+     set(ZeroMQ_FOUND ON)
+ endif()
+ 
+@@ -20,7 +18,3 @@ endif()
+ add_library(libzmq SHARED IMPORTED)
+ set_property(TARGET libzmq PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${PC_LIBZMQ_INCLUDE_DIRS})
+ set_property(TARGET libzmq PROPERTY IMPORTED_LOCATION ${ZeroMQ_LIBRARY})
+-
+-add_library(libzmq-static STATIC IMPORTED ${PC_LIBZMQ_INCLUDE_DIRS})
+-set_property(TARGET libzmq-static PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${PC_LIBZMQ_INCLUDE_DIRS})
+-set_property(TARGET libzmq-static PROPERTY IMPORTED_LOCATION ${ZeroMQ_STATIC_LIBRARY})
+-- 
+2.20.1
+

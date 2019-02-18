@@ -1,0 +1,46 @@
+From 6b17de3689e3d6e754dcb21e8dc232978181afcd Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jani=20V=C3=A4limaa?= <wally@mageia.org>
+Date: Thu, 17 Jan 2019 17:42:25 +0200
+Subject: [PATCH] Skip zeromq static targets
+
+---
+ CMakeLists.txt | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 0be6a81..23a3d24 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -20,7 +20,7 @@ if(NOT ZeroMQ_FOUND)
+     message(FATAL_ERROR "ZeroMQ was not found, neither as a CMake package nor via pkg-config")
+ endif()
+ 
+-if (ZeroMQ_FOUND AND (NOT TARGET libzmq OR NOT TARGET libzmq-static))
++if (ZeroMQ_FOUND AND (NOT TARGET libzmq))
+   message(FATAL_ERROR "ZeroMQ version not supported!")
+ endif()
+ 
+@@ -43,19 +43,18 @@ set(CPPZMQ_HEADERS
+     zmq_addon.hpp
+ )
+ 
+-foreach (target cppzmq cppzmq-static)
++foreach (target cppzmq)
+   add_library(${target} INTERFACE)
+   target_include_directories(${target} INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+                                                  $<INSTALL_INTERFACE:include>)
+ endforeach()
+ 
+ target_link_libraries(cppzmq INTERFACE libzmq)
+-target_link_libraries(cppzmq-static INTERFACE libzmq-static)
+ 
+ include(GNUInstallDirs)
+ include(CMakePackageConfigHelpers)
+ 
+-install(TARGETS cppzmq cppzmq-static
++install(TARGETS cppzmq
+         EXPORT ${PROJECT_NAME}-targets)
+ 
+ install(FILES ${CPPZMQ_HEADERS}
+-- 
+2.20.1
