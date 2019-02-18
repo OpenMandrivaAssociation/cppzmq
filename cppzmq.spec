@@ -36,7 +36,8 @@ C++ binding development headers for 0MQ.
 %autosetup -S git_am
 
 %build
-%cmake
+%cmake \
+	-DCPPZMQ_BUILD_TESTS:BOOL=OFF
 %make_build
 
 %install
