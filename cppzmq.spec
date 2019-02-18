@@ -44,7 +44,7 @@ C++ binding development headers for 0MQ.
 %make_install -C build
 
 %files -n %{devname}
-%doc README
+#doc README
 %license LICENSE
 %{_includedir}/zmq*.hpp
 %dir %{_datadir}/cmake/cppzmq/
