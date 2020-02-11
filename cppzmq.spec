@@ -6,7 +6,7 @@
 
 Name:		cppzmq
 Summary:	C++ binding for 0MQ
-Version:	4.3.0
+Version:	4.6.0
 Release:	1
 License:	MIT
 Group:		Development/Other
