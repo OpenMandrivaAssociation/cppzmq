@@ -49,3 +49,4 @@ C++ binding development headers for 0MQ.
 %{_includedir}/zmq*.hpp
 %dir %{_datadir}/cmake/cppzmq/
 %{_datadir}/cmake/cppzmq/*.cmake
+%{_datadir}/cppzmq/libzmq-pkg-config/FindZeroMQ.cmake
