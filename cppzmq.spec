@@ -12,9 +12,9 @@ License:	MIT
 Group:		Development/Other
 Url:		https://github.com/zeromq/cppzmq
 Source0:	https://github.com/zeromq/cppzmq/archive/v%{version}/%{name}-%{version}.tar.gz
-Patch0:		0001-Skip-zeromq-static-targets.patch
-Patch1:		0001-Drop-static-targets-from-FindZeroMQ.cmake.patch
-Patch2:		0001-Fix-FindZeroMQ.cmake-install-location.patch
+#Patch0:		0001-Skip-zeromq-static-targets.patch
+#Patch1:		0001-Drop-static-targets-from-FindZeroMQ.cmake.patch
+#Patch2:		0001-Fix-FindZeroMQ.cmake-install-location.patch
 BuildRequires:	cmake
 BuildRequires:	git-core
 BuildRequires:	pkgconfig(libzmq)
