@@ -6,8 +6,8 @@
 
 Name:		cppzmq
 Summary:	C++ binding for 0MQ
-Version:	4.8.1
-Release:	2
+Version:	4.10.0
+Release:	1
 License:	MIT
 Group:		Development/Other
 Url:		https://github.com/zeromq/cppzmq
@@ -15,7 +15,8 @@ Source0:	https://github.com/zeromq/cppzmq/archive/v%{version}/%{name}-%{version}
 #Patch0:		0001-Skip-zeromq-static-targets.patch
 #Patch1:		0001-Drop-static-targets-from-FindZeroMQ.cmake.patch
 #Patch2:		0001-Fix-FindZeroMQ.cmake-install-location.patch
-BuildRequires:	cmake
+BuildSystem:	cmake
+BuildOption:	-DCPPZMQ_BUILD_TESTS:BOOL=OFF
 BuildRequires:	git-core
 BuildRequires:	pkgconfig(libzmq)
 
@@ -32,17 +33,6 @@ Conflicts:	%{_lib}zeromq-devel < 4.2.2
 %description -n %{devname}
 C++ binding development headers for 0MQ.
 
-%prep
-%autosetup -p1
-
-%build
-%cmake \
-	-DCPPZMQ_BUILD_TESTS:BOOL=OFF
-%make_build
-
-%install
-%make_install -C build
-
 %files -n %{devname}
 #doc README
 %license LICENSE
@@ -50,3 +40,4 @@ C++ binding development headers for 0MQ.
 %dir %{_datadir}/cmake/cppzmq/
 %{_datadir}/cmake/cppzmq/*.cmake
 %{_datadir}/cmake/cppzmq/libzmq-pkg-config/FindZeroMQ.cmake
+%{_libdir}/pkgconfig/cppzmq.pc
